@@ -7,6 +7,9 @@ const PATH = args[3];
 
 request(URL, (error, response, body) => {
   fs.writeFile(PATH, body, () => {
-    console.log(`Downloaded and saved 3261 bytes to ${PATH}`);
-  })
+    fs.readFile(PATH, 'utf8', (error, data) => {
+      let dataSize = data.length;
+      console.log(`Downloaded and saved ${dataSize} bytes to ${PATH}`);
+    });
+  });
 });
